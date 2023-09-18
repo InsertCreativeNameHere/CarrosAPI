@@ -4,11 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_word():
-    carros = []
-    with open(nombre_archivo,'r') as archivo:
-        for linea in archivo:
-            carros.append({"Marca" : linea})
-    return jsonify(carros)
+    return 'API para el almacenamiento de carros'
 
 @app.route('/carros', methods = ["GET","POST"])
 def carros_txt():
@@ -19,8 +15,9 @@ def carros_txt():
         carros = []
         with open(nombre_archivo,'r') as archivo:
             for linea in archivo:
-                palabras = linea.split(",")
-                carros.append({"Marca" : palabras[0], "Color": palabras[1],"Color": palabras[2]})
+                palabras = linea.rstrip().split(",")
+                
+                carros.append({"Marca" : palabras[0], "Color": palabras[1],"Estado": palabras[2]})
         return jsonify(carros)
     elif method == "POST":
         data = request.get_json()

@@ -1,0 +1,2 @@
+Nissan,Negro,Nuevo
+Renault,Azul,Usado
